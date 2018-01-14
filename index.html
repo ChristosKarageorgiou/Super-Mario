@@ -19,32 +19,45 @@ body {
 			create : create,
 			update : update
 		}, false, false);
+		
+		var score = 0;
+		var score;
+		var life = 2;
+		var life;
 
 		function preload() {
 
 			//  We need this because the assets are on github pages
 			//  Remove the next 2 lines if running locally
-			this.load.baseURL = 'https://ioniodi.github.io/Super-Mario/';
+			this.load.baseURL = 'https://ChristosKarageorgiou.github.io/Super-Mario/';
 			this.load.crossOrigin = 'anonymous';
 
-			this.load.spritesheet('tiles', 'assets/super_mario_tiles.png', 16,
+			this.load.spritesheet('tiles', 'assets/super_mario_tilesn.png', 16,
 					16);
-			this.load.spritesheet('goomba', 'assets/goomba.png', 16, 16);
-			this.load.spritesheet('mario', 'assets/mario.png', 16, 16);
-			this.load.spritesheet('coin', 'assets/coin.png', 16, 16);
+			this.load.spritesheet('goomba', 'assets/goomban.png', 16, 16);
+			this.load.spritesheet('mario', 'assets/marion.png', 16, 16);
+			this.load.spritesheet('coin', 'assets/coinn.png', 16, 16);
 
 			this.load.tilemap('level', 'assets/super_mario_map.json', null,
 					Phaser.Tilemap.TILED_JSON);
 		}
 
 		function create() {
+			
+		     score = game.add.text(10,5, 'Score:0 ', {fontSize: '17px', fill: '#898888'});
+	             life = game.add.text(10,25, 'Lives:2 ', {fontSize: '17px', fill: '#898888'});
+	             
+	             score.fixedToCamera = true;
+	             life.fixedToCamera = true;
+			
+			
 			Phaser.Canvas.setImageRenderingCrisp(game.canvas)
 			game.scale.pageAlignHorizontally = true;
 			game.scale.pageAlignVertically = true
 			game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 
-			game.stage.backgroundColor = '#5c94fc';
+			game.stage.backgroundColor = '#876933';
 
 			map = game.add.tilemap('level');
 			map.addTilesetImage('tiles', 'tiles');
